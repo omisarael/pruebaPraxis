@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>agregar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <form [formGroup]="ionicForm"  (click)="submitForm()">
+    <ion-item lines="full">
+      <ion-label position="floating">Usuario Id</ion-label>
+      <ion-input formControlName="userId" type="text" ></ion-input>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="isSubmitted && errores.userId.errors?.required"></span>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Titulo</ion-label>
+      <ion-input formControlName="title" type="text" ></ion-input>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="isSubmitted && errores.title.errors?.required"></span>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Completado</ion-label>
+      <ion-input formControlName="completed" type="text" ></ion-input>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="isSubmitted && errores.completed.errors?.required"></span>
+  </form>
+</ion-card>
+  <ion-button (click)="submitForm()" color="tertiary" expand="block" class="ion-margin-top" type="submit">Submit</ion-button>
+
+</ion-content>

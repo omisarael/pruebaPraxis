@@ -1,0 +1,67 @@
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Login</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="ionicForm" >
+        <br>
+        <ion-item lines="full">
+          <ion-label position="floating"> Correo</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <span calss="error ion-padding" *ngIf="isSubmitted && errores.email.errors?.required">
+          Correo requerido.
+        </span>
+        <span class="error ion-padding" *ngIf="isSubmitted && errores.email.errors?.pattern">
+          Proveer un email correcto.
+        </span>
+        <br>
+        <ion-item lines="full">
+          <ion-label position="floating"> Contraseña</ion-label>
+          <ion-input formControlName="password" type="password" class="form-control"></ion-input>
+        </ion-item>
+        <ion-list>
+          <ion-item *ngIf="isSubmitted && errores.password.errors?.required">
+            <span class="error ion-padding">
+              Contraseña se requiere.
+            </span>
+          </ion-item>
+          <ion-item *ngIf="isSubmitted && errores.password.errors?.minlength">
+            <span class="error ion-padding">
+              Minimo 6 caracteres.
+            </span>
+          </ion-item>
+          <ion-item *ngIf="isSubmitted && errores.password.errors?.hasNumber">
+            <span class="error ion-padding">
+              Minimo un numero debe tener.
+            </span>
+          </ion-item>
+          <ion-item *ngIf="isSubmitted && errores.password.errors?.hasCapitalCase">
+            <span class="error ion-padding">
+              Minimo una letra mayuscula debe tener.
+            </span>
+          </ion-item>
+          <ion-item *ngIf="isSubmitted && errores.password.errors?.hasSmallCase">
+            <span class="error ion-padding">
+              Minimo una letra minuscula debe tener.
+            </span>
+          </ion-item>
+          <ion-item *ngIf="isSubmitted && errores.password.errors?.hasSpecialCharactersPunto">
+            <span class="error ion-padding">
+              Debe contener un punto como caracter especial.
+            </span>
+          </ion-item>
+          <ion-item *ngIf="isSubmitted && errores.password.errors?.hasSpecialCharactersGuionB">
+            <span class="error ion-padding">
+              Debe contener un guion bajo como caracter especial.
+            </span>
+          </ion-item>
+        </ion-list>
+        <br>
+      </form>
+      <ion-button (click)="submitForm()" color="tertiary" expand="block" class="ion-margin-top" type="submit">Submit</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

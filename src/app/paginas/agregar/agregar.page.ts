@@ -47,7 +47,7 @@ export class AgregarPage implements OnInit {
       console.log(this.ionicForm.value);
       this.enLocal.unshift(this.ionicForm.value)
       console.log(this.enLocal);
-      localStorage.setItem('veinte', JSON.stringify(this.enLocal))
+      this.enLocal = localStorage.setItem('veinte', JSON.stringify(this.enLocal))
       this.router.navigate(['/paginados']);
 
     }

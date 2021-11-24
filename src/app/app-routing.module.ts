@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'agregar',
     loadChildren: () => import('./paginas/agregar/agregar.module').then( m => m.AgregarPageModule)
   },
+  {
+    path: 'editar',
+    loadChildren: () => import('./paginas/editar/editar.module').then( m => m.EditarPageModule)
+  },
 ];
 
 @NgModule({

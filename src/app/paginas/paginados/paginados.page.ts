@@ -18,15 +18,33 @@ export class PaginadosPage implements OnInit {
 
   constructor(private crudTodos: CrudService,
     public actionSheetController: ActionSheetController,
-    private router: Router) { }
+    private router: Router) { 
+     // localStorage.removeItem('veinte');
+    }
+
+    doRefresh(event) {
+      console.log('Begin async operation');
+  
+      setTimeout(() => {
+        console.log('Async operation has ended');
+        event.target.complete();
+        this.enLocal = JSON.parse(localStorage.getItem('veinte'))
+      }, 2000);
+    }
+
+  //  ngAfterContentChecked() {
+
+  //  }
 
   ngOnInit() {
+    
     this.aLocal();
   }
 
   ngAfterContentInit() {
     this.todos();
   }
+
   todos() {
     this.crudTodos.Todos().subscribe(
       rs => this.respuestaTodos = rs,
@@ -36,7 +54,6 @@ export class PaginadosPage implements OnInit {
   }
 
   aLocal() {
-
     if (!localStorage.length) {
       const veinte = this.respuestaTodos.slice(0, 20);
       console.log(veinte);
@@ -44,16 +61,17 @@ export class PaginadosPage implements OnInit {
       this.enLocal = JSON.parse(localStorage.getItem('veinte'))
     }
     this.enLocal = JSON.parse(localStorage.getItem('veinte'))
-
-
-  }
+    }
 
   borrarDeLocal(objeto) {
     //filtrar todos menos el que se indica
     let filtrar = this.enLocal.filter(function (elementos) {
       return elementos.id !== objeto.id
     })
-    this.enLocal = filtrar;
+    // setear en localStorage el resultado de filtrar como string
+    localStorage.setItem('veinte', JSON.stringify(filtrar));
+    //recuperar el rersultado como array y guardarlo en enLocal array
+    this.enLocal = JSON.parse(localStorage.getItem('veinte'))   
   }
 
   editarItem() {
@@ -79,7 +97,8 @@ export class PaginadosPage implements OnInit {
         text: 'Editar',
         icon: 'share',
         handler: () => {
-
+          this.router.navigate(['/editar']);
+          localStorage.setItem('registro', JSON.stringify(item));
         }
 
       }, {
@@ -94,7 +113,7 @@ export class PaginadosPage implements OnInit {
     await actionSheet.present();
 
     const { role } = await actionSheet.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+//console.log('onDidDismiss resolved with role', role);
   }
 
 }

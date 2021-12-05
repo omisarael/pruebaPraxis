@@ -3,6 +3,7 @@ import { Itemscrud } from 'src/app/clases/itemscrud';
 import { CrudService } from 'src/app/servicios/crud.service';
 import { ActionSheetController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 
 
@@ -15,29 +16,29 @@ export class PaginadosPage implements OnInit {
   respuestaTodos: Itemscrud[];
   enLocal: any;
   posicioToEliminar: number;
-
+  
   constructor(private crudTodos: CrudService,
     public actionSheetController: ActionSheetController,
-    private router: Router) { 
-     // localStorage.removeItem('veinte');
-    }
+    private router: Router, public navctrl: NavController) {
+    // localStorage.removeItem('veinte');
+  }
 
-    doRefresh(event) {
-      console.log('Begin async operation');
-  
-      setTimeout(() => {
-        console.log('Async operation has ended');
-        event.target.complete();
-        this.enLocal = JSON.parse(localStorage.getItem('veinte'))
-      }, 2000);
-    }
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+      this.enLocal = JSON.parse(localStorage.getItem('veinte'))
+    }, 2000);
+  }
 
   //  ngAfterContentChecked() {
-
+  //   window.location.reload();
   //  }
 
   ngOnInit() {
-    
+
     this.aLocal();
   }
 
@@ -61,7 +62,7 @@ export class PaginadosPage implements OnInit {
       this.enLocal = JSON.parse(localStorage.getItem('veinte'))
     }
     this.enLocal = JSON.parse(localStorage.getItem('veinte'))
-    }
+  }
 
   borrarDeLocal(objeto) {
     //filtrar todos menos el que se indica
@@ -71,7 +72,7 @@ export class PaginadosPage implements OnInit {
     // setear en localStorage el resultado de filtrar como string
     localStorage.setItem('veinte', JSON.stringify(filtrar));
     //recuperar el rersultado como array y guardarlo en enLocal array
-    this.enLocal = JSON.parse(localStorage.getItem('veinte'))   
+    this.enLocal = JSON.parse(localStorage.getItem('veinte'))
   }
 
   editarItem() {
@@ -113,7 +114,7 @@ export class PaginadosPage implements OnInit {
     await actionSheet.present();
 
     const { role } = await actionSheet.onDidDismiss();
-//console.log('onDidDismiss resolved with role', role);
+    //console.log('onDidDismiss resolved with role', role);
   }
 
 }

@@ -5,17 +5,18 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'paginados',
     pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./paginas/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'paginados',
     loadChildren: () => import('./paginas/paginados/paginados.module').then( m => m.PaginadosPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./paginas/login/login.module').then( m => m.LoginPageModule)
+  },
+  
   {
     path: 'agregar',
     loadChildren: () => import('./paginas/agregar/agregar.module').then( m => m.AgregarPageModule)

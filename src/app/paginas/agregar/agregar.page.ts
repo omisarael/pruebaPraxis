@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
-import { ActivatedRoute, ParamMap, Router } from '@angular/router'; // Importar
+import { Router } from '@angular/router'; // Importar
 
 
 @Component({

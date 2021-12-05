@@ -5,12 +5,24 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-card *ngFor="let item of enLocal" >
-      <ion-card-header>
-        <span>{{item.title}}</span>
-        <ion-input [(ngModel)]="item.title"></ion-input>
-      </ion-card-header>
-    </ion-card>
-  </ion-list>
+  <ion-card *ngFor="let item of itemAeditar ">
+  <ion-item lines="full">
+    <ion-label position="floating">Usuario Id</ion-label>
+    <ion-input [(ngModel)]= "item.userId" type="number"></ion-input>
+  </ion-item>
+
+  <ion-item lines="full">
+    <ion-label position="floating">Titulo</ion-label>
+    <ion-input [(ngModel)]="item.title" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item lines="full">
+    <ion-label position="floating">Completado</ion-label>
+    <ion-input [(ngModel)]="item.completed" type="text"></ion-input>
+  </ion-item>
+
+  </ion-card>
+
+  <ion-button (click)="submitForm()" color="tertiary" expand="block" class="ion-margin-top" type="submit">Submit
+  </ion-button> 
 </ion-content>
